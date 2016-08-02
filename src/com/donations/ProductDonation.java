@@ -1,7 +1,7 @@
 package com.donations;
 
 import com.portalObjects.Donor;
-import com.portalObjects.ProjectItem;
+import com.portalObjects.Item;
 
 /**
  * Product Donation class that extends from the AbstractDonation
@@ -13,7 +13,7 @@ import com.portalObjects.ProjectItem;
  */
 public class ProductDonation extends AbstractDonation {
 
-  ProjectItem product;
+  Item product;
 
   /**
  * Product Donation Constructor.
@@ -22,7 +22,7 @@ public class ProductDonation extends AbstractDonation {
  * @param donationAmount the given amount that the donor wants to donate
  * @param product the product the donor wants to donate too
 */
-  public ProductDonation(Donor donor, double donationAmount, ProjectItem product) {
+  public ProductDonation(Donor donor, double donationAmount, Item product) {
     super(donor, donationAmount);
     this.product = product;
 
@@ -40,7 +40,7 @@ public class ProductDonation extends AbstractDonation {
   @Override
   public String toString() {
     return super.toString() + "\t Donation Type: Product \t Product Name: "
-        + product.getProductName();
+        + product.getName();
   }
 
 }

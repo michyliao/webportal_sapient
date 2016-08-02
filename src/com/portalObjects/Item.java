@@ -1,34 +1,39 @@
 package com.portalObjects;
 
-import java.util.ArrayList;
+import java.util.UUID;
 
 import com.donations.ProductDonation;
+import com.managers.DonorManager;
 
-public class ProjectItem {
+public class Item {
 	
-	int prodID;
+	UUID prodID;
 	
 	String productName;
 	String img;
 	
 	double totalDonation;
 	
-	ArrayList<Donor> donorList = new ArrayList<Donor>();
+	DonorManager donorMang;
 
 	
-	public ProjectItem(int prodID, String productName, String img) {
+	public Item(String productName, String img) {
 		super();
-		this.prodID = prodID;
 		this.productName = productName;
 		this.img = img;
+		this.donorMang = new DonorManager();
 	}
 
-	public String getProductName() {
+	public String getName() {
 		return productName;
 	}
 
-	public void setProductName(String productName) {
+	public void setName(String productName) {
 		this.productName = productName;
+	}
+	
+	public void setID(UUID id){
+		this.prodID = id;
 	}
 
 
@@ -47,7 +52,7 @@ public class ProjectItem {
 
 	public void addDonation(ProductDonation donation){
 		totalDonation += donation.getDonationAmount();
-		donorList.add(donation.getDonor());
+		donorMang.add(donation.getDonor());
 	}
 	
 	@Override 

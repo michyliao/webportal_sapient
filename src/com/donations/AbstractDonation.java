@@ -1,5 +1,7 @@
 package com.donations;
 
+import java.util.UUID;
+
 import com.portalObjects.Donor;
 
 /**
@@ -13,6 +15,8 @@ public abstract class AbstractDonation {
   private Donor donor;
 
   private double donationAmount;
+  
+  private UUID donationId;
 
   /**
    * Construct method for Abstract.
@@ -25,7 +29,11 @@ public abstract class AbstractDonation {
     this.donor = donor;
     this.donationAmount = donationAmount;
   }
-
+  
+  public void setDonation(UUID id){
+  	this.donationId = id;
+  }
+  
   public Donor getDonor() {
     return donor;
   }

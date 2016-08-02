@@ -1,12 +1,13 @@
 package com.portalObjects;
 
-import java.util.ArrayList;
+import java.util.Collection;
+import java.util.UUID;
 
 import com.donations.*;
+import com.managers.*;
 
-public class Project {
-	
-	int projID;
+public class Project{
+	UUID projID;
 	
 	String name;
 	String description;
@@ -14,15 +15,16 @@ public class Project {
 	double projectCost;
 	double totalDonation = 0.00;
 	
-	ArrayList<ProjectItem> productList = new ArrayList<ProjectItem>();
-	ArrayList<Donor> donorList = new ArrayList<Donor>();
+	ItemManager itemMang;
+	DonorManager donorMang;
 	
-	public Project(int proID, String name, String description, double projectCost) {
+	public Project(String name, String description, double projectCost) {
 		super();
-		this.projID = proID;
 		this.name = name;
 		this.description = description;
 		this.projectCost = projectCost;
+		this.donorMang = new DonorManager();
+		this.itemMang = new ItemManager();
 	}
 
 	public double getProjectCost() {
@@ -31,6 +33,10 @@ public class Project {
 
 	public void setProjectCost(double projectCost) {
 		this.projectCost = projectCost;
+	}
+	
+	public void setID(UUID id){
+		this.projID = id;
 	}
 
 	public String getName() {
@@ -52,51 +58,63 @@ public class Project {
 	public double getTotalDonation() {
 		return totalDonation;
 	}
-
-	public void setTotalDonation(double totalDonation) {
-		this.totalDonation = totalDonation;
-	}
-
-	public ArrayList<ProjectItem> getProductList() {
-		return productList;
-	}
-
-	public void setProductList(ArrayList<ProjectItem> productList) {
-		this.productList = productList;
-	}
 	
-	public ArrayList<Donor> getDonorList(){
-		return donorList;
+	/**
+	 * @return the itemMang
+	 */
+	public ItemManager getItemMang() {
+		return itemMang;
 	}
-	
-	public void addDonor(Donor donor){
-		this.donorList.add(donor);
+
+	/**
+	 * @param itemMang the itemMang to set
+	 */
+	public void setItemMang(ItemManager itemMang) {
+		this.itemMang = itemMang;
 	}
-	
+
+	/**
+	 * @return the donorMang
+	 */
+	public DonorManager getDonorMang() {
+		return donorMang;
+	}
+
+	/**
+	 * @param donorMang the donorMang to set
+	 */
+	public void setDonorMang(DonorManager donorMang) {
+		this.donorMang = donorMang;
+	}
+
 	public void addDonation(ProjectDonation donation){
 		totalDonation += donation.getDonationAmount();
-		donorList.add(donation.getDonor());
+		donorMang.add(donation.getDonor());
 	}
 	
 	public void viewDonors(){
-		for (Donor donor : donorList){
+		for (Donor donor : donorMang.returnAll().values()){
 			System.out.println(donor);
 		}
 	}
 	
-	public void viewProducts(){
-		for (ProjectItem product : productList){
-			System.out.println(product);
+	public Collection<Donor> getDonorList(){
+		return donorMang.returnAll().values();
+	}
+	
+	public void viewItems(){
+		for (Item item : itemMang.returnAll().values()){
+			System.out.println(item);
 		}
 	}
 	
-	public void addProduct(ProjectItem product){
-		productList.add(product);
+	public void addItem(Item item){
+		itemMang.add(item);
 	}
 	
 	@Override
 	public String toString(){
 		return "Project name: " + name + "\n" + "Project Description: " + description + "\n";
 	}
-	
+
 }

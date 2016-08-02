@@ -1,6 +1,6 @@
 package com.portalObjects;
 
-import java.util.ArrayList;
+import java.util.UUID;
 
 /**
  * Donor class that contains name and email.
@@ -10,12 +10,11 @@ import java.util.ArrayList;
  */
 public class Donor {
 	
-	int donorID;
+	UUID donorID;
 	
 	String name;
 	String email;
-	
-	ArrayList<Project> projectListDonated = new ArrayList<Project>();
+		
 	
 	/**
 	 * Getter method for the name of the donor.
@@ -38,9 +37,12 @@ public class Donor {
 		this.email = email;
 	}
 	
-	public Donor(int DonorID, String name, String email) {
+	public void setID(UUID id){
+		this.donorID = id;
+	}
+	
+	public Donor(String name, String email) {
 		super();
-		this.donorID = DonorID;
 		this.name = name;
 		this.email = email;
 	}

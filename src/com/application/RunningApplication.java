@@ -15,7 +15,6 @@ public class RunningApplication {
 		String portalName = sc.nextLine();
 
 		Portal webportal = new Portal(portalName);
-		IdGenerator idGen = new IdGenerator();
 		boolean exit = false;
 
 		try {
@@ -35,7 +34,7 @@ public class RunningApplication {
 					try {
 						System.out.println("Enter the total cost of the project: ");
 						double cost = Double.parseDouble(sc.nextLine());
-						Project newProject = new Project(idGen.newProjectId(), projectName, projectDescription, cost);
+						Project newProject = new Project(projectName, projectDescription, cost);
 
 						webportal.addProject(newProject);
 
@@ -56,9 +55,9 @@ public class RunningApplication {
 					System.out.println("Enter the path for the img: ");
 					String img = sc.nextLine();
 
-					ProjectItem newProduct = new ProjectItem(idGen.newProductId(), productName, img);
+					Item newProduct = new Item(productName, img);
 
-					webportal.addProduct(newProduct);
+					webportal.addItem(newProduct);
 
 					System.out.println(newProduct);
 
@@ -68,32 +67,36 @@ public class RunningApplication {
 						System.out.println("Please enter the Project Name that would like to add the product to: ");
 						String projName = sc.nextLine();
 
-						try{
+						try {
 							Project requestedProject = webportal.findProject(projName);
-							requestedProject.addProduct(newProduct);
-						} catch (NullPointerException e){
+							requestedProject.addItem(newProduct);
+						} catch (NullPointerException e) {
 							System.out.println("The project name that you had entered does not exist. Try Again.");
 							System.out.println(e.getMessage());
 						}
-						
-						
+
 					}
 					break;
 				case 3:
 					System.out.println("Enter the name of the Donor: ");
 					sc.nextLine();
 
-					String donorName =sc.nextLine();
+					String donorName = sc.nextLine();
 
 					System.out.println("Enter the email of the Donor: ");
 					String donorEmail = sc.nextLine();
 
-					Donor newDonor = new Donor(idGen.newDonorId(), donorName, donorEmail);
+					Donor newDonor = new Donor(donorName, donorEmail);
+					
+					webportal.addDonor(newDonor);
 
 					System.out.println(newDonor);
 					break;
 
 				case 4:
+					System.out.println(" --- List of Donors --- \n");
+					webportal.viewDonors();
+					
 					System.out.println("Enter the donor name that would like to donate: ");
 					sc.nextLine();
 					String donationDonorName = sc.nextLine();
@@ -104,23 +107,30 @@ public class RunningApplication {
 
 					System.out.println("Enter the type of donation you would like to donate [project/product/portal]");
 					if (sc.nextLine().equalsIgnoreCase("project")) {
-						webportal.viewAvailableProjects();
+						try {
 
-						System.out.println("Enter the name of the project that you would like to donate: ");
-						String donatingProjectName = sc.nextLine();
+							webportal.viewAllAvailableProjects();
 
-						Project donatingProject = webportal.findProject(donatingProjectName);
-						ProjectDonation projectDonation = new ProjectDonation(donationDonor, donationAmount, donatingProject);
+							System.out.println("Enter the name of the project that you would like to donate: ");
+							String donatingProjectName = sc.nextLine();
 
-						webportal.addDonation(projectDonation);
+							Project donatingProject = webportal.findProject(donatingProjectName);
+							ProjectDonation projectDonation = new ProjectDonation(donationDonor, donationAmount, donatingProject);
+
+							webportal.addDonation(projectDonation);
+
+						} catch (NullPointerException e) {
+							System.out.println("The donor you entered does not exist");
+							System.out.println(e.getMessage());
+						}
 
 					} else if (sc.nextLine().equalsIgnoreCase("product")) {
-						webportal.viewProducts();
+						webportal.viewItems();
 
 						System.out.println("Enter the name of the product that you like to to donate: ");
 						String donatingProductName = sc.nextLine();
 
-						ProjectItem donatingProduct = webportal.findProduct(donatingProductName);
+						Item donatingProduct = webportal.findItem(donatingProductName);
 						ProductDonation productDonation = new ProductDonation(donationDonor, donationAmount, donatingProduct);
 
 						webportal.addDonation(productDonation);
@@ -142,23 +152,22 @@ public class RunningApplication {
 					String requestedProductName = sc.nextLine();
 
 					Project accquiredProject = webportal.findProject(requestedProjectName);
-					ProjectItem accquiredProduct = webportal.findProduct(requestedProductName);
+					Item accquiredProduct = webportal.findItem(requestedProductName);
 
-					accquiredProject.addProduct(accquiredProduct);
+					accquiredProject.addItem(accquiredProduct);
 					break;
 				case 6:
-					webportal.viewAllDonors();
+					webportal.viewDonors();
 					break;
 				case 7:
-					for (Project proj : webportal.getProjectList()) {
-						System.out.println(proj);
-						proj.viewDonors();
-					}
+					webportal.viewAllProjectsDonors();
 					break;
 				case 8:
 					System.out.println("Please enter the name of the project that you would like to view all the donors for: ");
 					String viewProj = sc.nextLine();
 
+					//TODO try catch for finding project
+					
 					webportal.findProject(viewProj).viewDonors();
 					break;
 				case 9:
@@ -177,10 +186,10 @@ public class RunningApplication {
 		} catch (InputMismatchException e) {
 			System.out.println("The input that you had enter is invalid. Quitting Program.");
 			System.out.println(e.getMessage());
-		} finally{
+		} finally {
 			sc.close();
 		}
-	
+
 	}
 
 	public static void printOptions() {

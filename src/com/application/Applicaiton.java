@@ -5,7 +5,7 @@ import com.donations.ProductDonation;
 import com.donations.ProjectDonation;
 import com.portalObjects.Donor;
 import com.portalObjects.Portal;
-import com.portalObjects.ProjectItem;
+import com.portalObjects.Item;
 import com.portalObjects.Project;
 
 /**
@@ -29,10 +29,10 @@ public class Applicaiton {
     System.out.println(webPortal);
 
     // Create Projects
-    Project cureCancer = new Project(101, "Cure Cancer", "Cancer research facility", 1000);
-    Project primaryEducation = new Project(102, "Primary Education", "School of primary education", 
+    Project cureCancer = new Project("Cure Cancer", "Cancer research facility", 1000);
+    Project primaryEducation = new Project("Primary Education", "School of primary education", 
         2000);
-    Project oldAgeHome = new Project(103, "Old Age Home", "Home for old people", 6000);
+    Project oldAgeHome = new Project("Old Age Home", "Home for old people", 6000);
 
     // Add projects to the portal
     webPortal.addProject(cureCancer);
@@ -40,49 +40,49 @@ public class Applicaiton {
     webPortal.addProject(oldAgeHome);
 
     // View all available projects
-    webPortal.viewAvailableProjects();
+    webPortal.viewAllAvailableProjects();
 
     // Create Products 
-    ProjectItem medicineOne = new ProjectItem(201, "Medicine 1", "picture_1");
-    ProjectItem medicineTwo = new ProjectItem(202, "Medicine 2", "picture_2");
-    ProjectItem medicineThree = new ProjectItem(203, "Medicine 3", "picture_3");
-    ProjectItem medicineFour = new ProjectItem(204, "Medicine 4", "picture_4");
+    Item medicineOne = new Item("Medicine 1", "picture_1");
+    Item medicineTwo = new Item("Medicine 2", "picture_2");
+    Item medicineThree = new Item("Medicine 3", "picture_3");
+    Item medicineFour = new Item("Medicine 4", "picture_4");
 
     // Adding products to Projects
-    cureCancer.addProduct(medicineOne);
-    cureCancer.addProduct(medicineTwo);
-    cureCancer.addProduct(medicineThree);
-    cureCancer.addProduct(medicineFour);
+    cureCancer.addItem(medicineOne);
+    cureCancer.addItem(medicineTwo);
+    cureCancer.addItem(medicineThree);
+    cureCancer.addItem(medicineFour);
     
-    ProjectItem educationOne = new ProjectItem(205, "Education 1", "picture_5");
-    ProjectItem educationTwo = new ProjectItem(206, "Education 2", "picture_6");
-    ProjectItem educationThree = new ProjectItem(207, "Education 3", "picture_7");
-    ProjectItem educationFour = new ProjectItem(208, "Education 4", "picture_8");
+    Item educationOne = new Item("Education 1", "picture_5");
+    Item educationTwo = new Item("Education 2", "picture_6");
+    Item educationThree = new Item("Education 3", "picture_7");
+    Item educationFour = new Item("Education 4", "picture_8");
 
-    primaryEducation.addProduct(educationOne);
-    primaryEducation.addProduct(educationTwo);
-    primaryEducation.addProduct(educationThree);
-    primaryEducation.addProduct(educationFour);
+    primaryEducation.addItem(educationOne);
+    primaryEducation.addItem(educationTwo);
+    primaryEducation.addItem(educationThree);
+    primaryEducation.addItem(educationFour);
 
-    ProjectItem oldManOne = new ProjectItem(209, "One Man 1", "picture_9");
-    ProjectItem oldManTwo = new ProjectItem(209, "One Man 2", "picture_10");
-    ProjectItem oldManThree = new ProjectItem(209, "One Man 3", "picture_11");
-    ProjectItem oldManFour = new ProjectItem(209, "One Man 4", "picture_12");
+    Item oldManOne = new Item("One Man 1", "picture_9");
+    Item oldManTwo = new Item("One Man 2", "picture_10");
+    Item oldManThree = new Item("One Man 3", "picture_11");
+    Item oldManFour = new Item("One Man 4", "picture_12");
     
-    oldAgeHome.addProduct(oldManOne);
-    oldAgeHome.addProduct(oldManTwo);
-    oldAgeHome.addProduct(oldManThree);
-    oldAgeHome.addProduct(oldManFour);
+    oldAgeHome.addItem(oldManOne);
+    oldAgeHome.addItem(oldManTwo);
+    oldAgeHome.addItem(oldManThree);
+    oldAgeHome.addItem(oldManFour);
 
     // Create donors
-    Donor donorOne = new Donor(101, "Person One", "person1@mail.com");
-    Donor donorTwo = new Donor(102, "Person Two", "person2@mail.com");
-    Donor donorThree = new Donor(103, "Person Three", "person3@mail.com");
-    Donor donorFour = new Donor(104, "Person Four", "person4@mail.com");
-    Donor donorFive = new Donor(105, "Person Five", "person5@mail.com");
-    Donor donorSix = new Donor(106, "Person Six", "person6@mail.com");
-    Donor donorSeven = new Donor(107, "Person Seven", "person7@mail.com");
-    Donor donorEight = new Donor(108, "Person Eight", "person8@mail.com");
+    Donor donorOne = new Donor("Person One", "person1@mail.com");
+    Donor donorTwo = new Donor("Person Two", "person2@mail.com");
+    Donor donorThree = new Donor("Person Three", "person3@mail.com");
+    Donor donorFour = new Donor("Person Four", "person4@mail.com");
+    Donor donorFive = new Donor("Person Five", "person5@mail.com");
+    Donor donorSix = new Donor("Person Six", "person6@mail.com");
+    Donor donorSeven = new Donor("Person Seven", "person7@mail.com");
+    Donor donorEight = new Donor("Person Eight", "person8@mail.com");
 
     // Create donations
     ProjectDonation donationOne = new ProjectDonation(donorOne, 500.00, cureCancer);
@@ -109,11 +109,11 @@ public class Applicaiton {
     webPortal.addDonation(donationTen);
     webPortal.addDonation(donationEleven);
 
-    cureCancer.viewProducts();
+    cureCancer.viewItems();
     cureCancer.viewDonors();
 
-    webPortal.viewAllProjectsDonors();
-    webPortal.viewAllDonations();
+    webPortal.viewAllAvailableProjects();;
+    webPortal.viewDonations();
 
 
   }
