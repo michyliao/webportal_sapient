@@ -5,13 +5,13 @@ import com.managers.*;
 
 public class Portal {
 	
-	String name;
-	DonorManager donorMang;
-	ProjectManager projectMang;
-	DonationManager donationMang;
-	ItemManager itemMang;
+	private String name;
+	private DonorManager donorMang;
+	private ProjectManager projectMang;
+	private DonationManager donationMang;
+	private ItemManager itemMang;
 	
-	double totalDonation;
+	private double totalDonation;
 	
 	public Portal(String name){
 		super();

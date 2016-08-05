@@ -10,11 +10,20 @@ import java.util.UUID;
  */
 public class Donor {
 	
-	UUID donorID;
+	private UUID donorID;
+	private String name;
+	private String email;
 	
-	String name;
-	String email;
-		
+	public Donor(){
+		super();
+	}
+	
+	public Donor(String name, String email) {
+		super();
+		this.name = name;
+		this.email = email;
+		this.donorID = UUID.randomUUID();
+	}
 	
 	/**
 	 * Getter method for the name of the donor.
@@ -37,19 +46,13 @@ public class Donor {
 		this.email = email;
 	}
 	
-	public void setID(UUID id){
-		this.donorID = id;
-	}
-	
-	public Donor(String name, String email) {
-		super();
-		this.name = name;
-		this.email = email;
+	public UUID getID(){
+		return donorID;
 	}
 	
 	@Override
 	public String toString(){
-		return "Donor Name: " + name + "\t Email: " + email;
+		return "Donor ID: " + donorID + " Donor Name: " + name + "\t Email: " + email;
 	}
 
 }

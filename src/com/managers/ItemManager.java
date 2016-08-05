@@ -12,10 +12,7 @@ public class ItemManager implements IPortal<Item> {
 
 	@Override
 	public void add(Item projectItem) {
-		UUID key = UUID.randomUUID();
-
-		projectItem.setID(key);
-
+		UUID key = projectItem.getID();
 		itemList.put(key, projectItem);
 	}
 

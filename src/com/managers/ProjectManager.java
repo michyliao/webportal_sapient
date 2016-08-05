@@ -17,10 +17,7 @@ public class ProjectManager implements IPortal<Project> {
 	 */
 	@Override
 	public void add(Project project) {
-		UUID key = UUID.randomUUID();
-		
-		project.setID(key);
-		
+		UUID key = project.getProjID();		
 		projectList.put(key, project);
 	}
 

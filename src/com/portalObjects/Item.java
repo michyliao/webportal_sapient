@@ -7,48 +7,57 @@ import com.managers.DonorManager;
 
 public class Item {
 	
-	UUID prodID;
+	private UUID itemID;
+	private String name;
+	private String img;
+	private double totalDonation;
+	private DonorManager donorMang;
 	
-	String productName;
-	String img;
-	
-	double totalDonation;
-	
-	DonorManager donorMang;
-
-	
-	public Item(String productName, String img) {
+	public Item(){
 		super();
-		this.productName = productName;
+	}
+	
+	public Item(String name, String img) {
+		super();
+		this.name = name;
 		this.img = img;
 		this.donorMang = new DonorManager();
+		this.itemID = UUID.randomUUID();
+	}
+
+	/**
+	 * @return the totalDonation
+	 */
+	public double getTotalDonation() {
+		return totalDonation;
+	}
+
+	/**
+	 * @param totalDonation the totalDonation to set
+	 */
+	public void setTotalDonation(double totalDonation) {
+		this.totalDonation = totalDonation;
 	}
 
 	public String getName() {
-		return productName;
+		return name;
 	}
 
 	public void setName(String productName) {
-		this.productName = productName;
+		this.name = productName;
 	}
 	
-	public void setID(UUID id){
-		this.prodID = id;
+	public UUID getID(){
+		return itemID;
 	}
-
-
 
 	public String getImg() {
 		return img;
 	}
 
-
-
 	public void setImg(String img) {
 		this.img = img;
 	}
-
-
 
 	public void addDonation(ProductDonation donation){
 		totalDonation += donation.getDonationAmount();
@@ -57,7 +66,7 @@ public class Item {
 	
 	@Override 
 	public String toString(){
-		return "Product: " + productName + "\t img path: " + img; 
+		return "Product: " + name + "\t img path: " + img; 
 	}
 	
 	

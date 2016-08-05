@@ -12,10 +12,7 @@ public class DonorManager implements IPortal<Donor> {
 
 	@Override
 	public void add(Donor donor) {
-		UUID key = UUID.randomUUID();
-
-		donor.setID(key);
-
+		UUID key = donor.getID();
 		donorList.put(key, donor);
 	}
 

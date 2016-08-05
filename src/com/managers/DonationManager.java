@@ -12,10 +12,7 @@ public class DonationManager implements IPortal<AbstractDonation> {
 
 	@Override
 	public void add(AbstractDonation donation) {
-		UUID key = UUID.randomUUID();
-
-		donation.setDonation(key);
-
+		UUID key = donation.getID();
 		donationList.put(key, donation);
 	}
 

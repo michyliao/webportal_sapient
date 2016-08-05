@@ -28,10 +28,11 @@ public abstract class AbstractDonation {
     super();
     this.donor = donor;
     this.donationAmount = donationAmount;
+    this.donationId = UUID.randomUUID();
   }
   
-  public void setDonation(UUID id){
-  	this.donationId = id;
+  public UUID getID(){
+  	return donationId;
   }
   
   public Donor getDonor() {

@@ -7,16 +7,19 @@ import com.donations.*;
 import com.managers.*;
 
 public class Project{
-	UUID projID;
+	private UUID projID;
+	private String name;
+	private String description;
 	
-	String name;
-	String description;
+	private double projectCost;
+	private double totalDonation = 0.00;
 	
-	double projectCost;
-	double totalDonation = 0.00;
+	private ItemManager itemMang;
+	private DonorManager donorMang;
 	
-	ItemManager itemMang;
-	DonorManager donorMang;
+	public Project(){
+		super();
+	}
 	
 	public Project(String name, String description, double projectCost) {
 		super();
@@ -25,6 +28,28 @@ public class Project{
 		this.projectCost = projectCost;
 		this.donorMang = new DonorManager();
 		this.itemMang = new ItemManager();
+		this.projID = UUID.randomUUID(); 
+	}
+
+	/**
+	 * @return the projID
+	 */
+	public UUID getProjID() {
+		return projID;
+	}
+
+	/**
+	 * @param projID the projID to set
+	 */
+	public void setProjID(UUID projID) {
+		this.projID = projID;
+	}
+
+	/**
+	 * @param totalDonation the totalDonation to set
+	 */
+	public void setTotalDonation(double totalDonation) {
+		this.totalDonation = totalDonation;
 	}
 
 	public double getProjectCost() {
@@ -33,10 +58,6 @@ public class Project{
 
 	public void setProjectCost(double projectCost) {
 		this.projectCost = projectCost;
-	}
-	
-	public void setID(UUID id){
-		this.projID = id;
 	}
 
 	public String getName() {
