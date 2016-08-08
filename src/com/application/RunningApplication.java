@@ -131,7 +131,7 @@ public class RunningApplication {
 						String donatingProductName = sc.nextLine();
 
 						Item donatingProduct = webportal.findItem(donatingProductName);
-						ProductDonation productDonation = new ProductDonation(donationDonor, donationAmount, donatingProduct);
+						ItemDonation productDonation = new ItemDonation(donationDonor, donationAmount, donatingProduct);
 
 						webportal.addDonation(productDonation);
 

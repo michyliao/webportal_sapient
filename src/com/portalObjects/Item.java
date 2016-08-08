@@ -2,7 +2,7 @@ package com.portalObjects;
 
 import java.util.UUID;
 
-import com.donations.ProductDonation;
+import com.donations.ItemDonation;
 import com.managers.DonorManager;
 
 public class Item {
@@ -59,7 +59,7 @@ public class Item {
 		this.img = img;
 	}
 
-	public void addDonation(ProductDonation donation){
+	public void addDonation(ItemDonation donation){
 		totalDonation += donation.getDonationAmount();
 		donorMang.add(donation.getDonor());
 	}

@@ -11,36 +11,36 @@ import com.portalObjects.Item;
  * @author mliao
  *
  */
-public class ProductDonation extends AbstractDonation {
+public class ItemDonation extends AbstractDonation {
 
-  Item product;
+  Item item;
 
   /**
  * Product Donation Constructor.
  * 
  * @param donor Donor object that wants to donate to a product
  * @param donationAmount the given amount that the donor wants to donate
- * @param product the product the donor wants to donate too
+ * @param item the product the donor wants to donate too
 */
-  public ProductDonation(Donor donor, double donationAmount, Item product) {
+  public ItemDonation(Donor donor, double donationAmount, Item item) {
     super(donor, donationAmount);
-    this.product = product;
+    this.item = item;
 
-    updateProduct();
+    updateItem();
   }
 
   /**
    *  Product method to update the current product object which will update
    * the donation amount, and add the donor to the project donorlist.
    */
-  private void updateProduct() {
-    product.addDonation(this);
+  private void updateItem() {
+    item.addDonation(this);
   }
 
   @Override
   public String toString() {
-    return super.toString() + "\t Donation Type: Product \t Product Name: "
-        + product.getName();
+    return super.toString() + "\t Donation Type: Item \t Item Name: "
+        + item.getName();
   }
 
 }

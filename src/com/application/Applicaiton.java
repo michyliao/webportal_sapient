@@ -1,7 +1,7 @@
 package com.application;
 
 import com.donations.PortalDonation;
-import com.donations.ProductDonation;
+import com.donations.ItemDonation;
 import com.donations.ProjectDonation;
 import com.portalObjects.Donor;
 import com.portalObjects.Portal;
@@ -89,9 +89,9 @@ public class Applicaiton {
     ProjectDonation donationTwo = new ProjectDonation(donorOne, 50.00, primaryEducation);
     ProjectDonation donationThree = new ProjectDonation(donorTwo, 70.00, oldAgeHome);
     ProjectDonation donationFour = new ProjectDonation(donorThree, 900.00, cureCancer);
-    ProductDonation donationFive = new ProductDonation(donorFour, 500.00, medicineOne);
-    ProductDonation donationSix = new ProductDonation(donorFive, 500.00, educationOne);
-    ProductDonation donationSeven = new ProductDonation(donorSix, 500.00, oldManOne);
+    ItemDonation donationFive = new ItemDonation(donorFour, 500.00, medicineOne);
+    ItemDonation donationSix = new ItemDonation(donorFive, 500.00, educationOne);
+    ItemDonation donationSeven = new ItemDonation(donorSix, 500.00, oldManOne);
     ProjectDonation donationEight = new ProjectDonation(donorSix, 500.00, cureCancer);
     ProjectDonation donationNine = new ProjectDonation(donorSeven, 500.00, cureCancer);
     PortalDonation donationTen = new PortalDonation(donorEight, 500.00, webPortal);
