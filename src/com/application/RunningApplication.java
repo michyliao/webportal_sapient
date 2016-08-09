@@ -55,7 +55,7 @@ public class RunningApplication {
 					System.out.println("Enter the path for the img: ");
 					String img = sc.nextLine();
 
-					Item newProduct = new Item(productName, img);
+					Item newProduct = new Item(productName, img, UUID.randomUUID());
 
 					webportal.addItem(newProduct);
 

@@ -12,5 +12,6 @@ public interface MyDAO<T> {
 	public int delete(T t);
 	public T find(UUID id, String... value);
 	public List<T> findAll();
+	public void closeConn();
 	
 }

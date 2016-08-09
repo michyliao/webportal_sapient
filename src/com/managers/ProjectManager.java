@@ -260,5 +260,14 @@ public class ProjectManager implements IPortal<Project>, MyDAO<Project> {
 		}
 		return projectList;
 	}
+	
+	@Override
+	public void closeConn(){
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

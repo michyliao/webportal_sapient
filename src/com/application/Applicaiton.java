@@ -1,6 +1,9 @@
 package com.application;
 
 import com.donations.PortalDonation;
+
+import java.util.UUID;
+
 import com.donations.ItemDonation;
 import com.donations.ProjectDonation;
 import com.portalObjects.Donor;
@@ -43,10 +46,10 @@ public class Applicaiton {
     webPortal.viewAllAvailableProjects();
 
     // Create Products 
-    Item medicineOne = new Item("Medicine 1", "picture_1");
-    Item medicineTwo = new Item("Medicine 2", "picture_2");
-    Item medicineThree = new Item("Medicine 3", "picture_3");
-    Item medicineFour = new Item("Medicine 4", "picture_4");
+    Item medicineOne = new Item("Medicine 1", "picture_1", UUID.randomUUID());
+    Item medicineTwo = new Item("Medicine 2", "picture_2", UUID.randomUUID());
+    Item medicineThree = new Item("Medicine 3", "picture_3", UUID.randomUUID());
+    Item medicineFour = new Item("Medicine 4", "picture_4", UUID.randomUUID());
 
     // Adding products to Projects
     cureCancer.addItem(medicineOne);
@@ -54,20 +57,20 @@ public class Applicaiton {
     cureCancer.addItem(medicineThree);
     cureCancer.addItem(medicineFour);
     
-    Item educationOne = new Item("Education 1", "picture_5");
-    Item educationTwo = new Item("Education 2", "picture_6");
-    Item educationThree = new Item("Education 3", "picture_7");
-    Item educationFour = new Item("Education 4", "picture_8");
+    Item educationOne = new Item("Education 1", "picture_5", UUID.randomUUID());
+    Item educationTwo = new Item("Education 2", "picture_6", UUID.randomUUID());
+    Item educationThree = new Item("Education 3", "picture_7", UUID.randomUUID());
+    Item educationFour = new Item("Education 4", "picture_8", UUID.randomUUID());
 
     primaryEducation.addItem(educationOne);
     primaryEducation.addItem(educationTwo);
     primaryEducation.addItem(educationThree);
     primaryEducation.addItem(educationFour);
 
-    Item oldManOne = new Item("One Man 1", "picture_9");
-    Item oldManTwo = new Item("One Man 2", "picture_10");
-    Item oldManThree = new Item("One Man 3", "picture_11");
-    Item oldManFour = new Item("One Man 4", "picture_12");
+    Item oldManOne = new Item("One Man 1", "picture_9", UUID.randomUUID());
+    Item oldManTwo = new Item("One Man 2", "picture_10", UUID.randomUUID());
+    Item oldManThree = new Item("One Man 3", "picture_11", UUID.randomUUID());
+    Item oldManFour = new Item("One Man 4", "picture_12", UUID.randomUUID());
     
     oldAgeHome.addItem(oldManOne);
     oldAgeHome.addItem(oldManTwo);

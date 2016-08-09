@@ -214,5 +214,14 @@ public class DonorManager implements IPortal<Donor>, MyDAO<Donor> {
 
 		return donorList;
 	}
+	
+	@Override
+	public void closeConn(){
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

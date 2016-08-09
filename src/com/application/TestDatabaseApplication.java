@@ -3,7 +3,9 @@ package com.application;
 import java.sql.*;
 import java.util.List;
 
+import com.managers.DonorManager;
 import com.managers.ProjectManager;
+import com.portalObjects.Donor;
 import com.portalObjects.Project;
 import com.sqlConnection.MySQLConnection;
 
@@ -43,6 +45,17 @@ public class TestDatabaseApplication {
     List<Project> list = manager.findAll();
     for(Project project : list){
     	System.out.println(project);
+    }
+    
+    Donor donorOne = new Donor("Person One", "person1@mail.com");
+    Donor donorTwo = new Donor("Person Two", "person2@mail.com");
+    
+    DonorManager dManager = new DonorManager();
+//    dManager.create(donorOne);
+//    dManager.create(donorTwo);
+    
+    for (Donor donor : dManager.findAll()){
+    	System.out.println(donor);
     }
 	
 	}

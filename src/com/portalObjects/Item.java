@@ -8,6 +8,7 @@ import com.managers.DonorManager;
 public class Item {
 	
 	private UUID itemID;
+	private UUID projectID;
 	private String name;
 	private String img;
 	private double totalDonation;
@@ -17,10 +18,11 @@ public class Item {
 		super();
 	}
 	
-	public Item(String name, String img) {
+	public Item(String name, String img, UUID proj_id) {
 		super();
 		this.name = name;
 		this.img = img;
+		this.projectID = proj_id;
 		this.donorMang = new DonorManager();
 		this.itemID = UUID.randomUUID();
 	}
@@ -59,6 +61,34 @@ public class Item {
 		this.img = img;
 	}
 
+	/**
+	 * @return the itemID
+	 */
+	public UUID getItemID() {
+		return itemID;
+	}
+
+	/**
+	 * @param itemID the itemID to set
+	 */
+	public void setItemID(UUID itemID) {
+		this.itemID = itemID;
+	}
+
+	/**
+	 * @return the projectID
+	 */
+	public UUID getProjectID() {
+		return projectID;
+	}
+
+	/**
+	 * @param projectID the projectID to set
+	 */
+	public void setProjectID(UUID projectID) {
+		this.projectID = projectID;
+	}
+	
 	public void addDonation(ItemDonation donation){
 		totalDonation += donation.getDonationAmount();
 		donorMang.add(donation.getDonor());

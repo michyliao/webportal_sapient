@@ -1,6 +1,8 @@
 package com.managers;
 
 import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.UUID;
@@ -8,11 +10,26 @@ import java.util.UUID;
 import com.donations.AbstractDonation;
 import com.interfaces.IPortal;
 import com.interfaces.MyDAO;
+import com.sqlConnection.MySQLConnection;
 
 public class DonationManager implements IPortal<AbstractDonation>, MyDAO<AbstractDonation> {
 
 	Hashtable<UUID, AbstractDonation> donationList = new Hashtable<UUID, AbstractDonation>();
 
+	Connection conn;
+
+	/**
+	 * DonationManager constructor that takes in no argument and instantiate SQL connection
+	 * 
+	 * @throws NullPointerException If SQL connection is not connected, a null pointer exception will be thrown
+	 */
+	public DonationManager() throws NullPointerException {
+		super();
+		if ((this.conn = new MySQLConnection().getMyOracleConnection()) == null) {
+			throw new NullPointerException();
+		}
+	}
+	
 	@Override
 	public void add(AbstractDonation donation) {
 		UUID key = donation.getID();
@@ -69,5 +86,14 @@ public class DonationManager implements IPortal<AbstractDonation>, MyDAO<Abstrac
 	public List<AbstractDonation> findAll() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public void closeConn(){
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
