@@ -30,7 +30,11 @@ public class PortalDonation extends AbstractDonation {
     updatePortal();
   }
  
-  /**
+  public PortalDonation() {
+  	super(null, 0.00D, null, null);
+  }
+
+	/**
    * Portal method to update the current portal object which will update
    * the donation amount, and add the donor to the project donorlist.
    */

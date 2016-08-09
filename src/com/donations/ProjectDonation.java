@@ -27,6 +27,10 @@ public class ProjectDonation extends AbstractDonation {
     this.project = project;
     updateProject();
   }
+  
+  public ProjectDonation(){
+  	super(null, 0.00D, null, null);
+  }
 
 	/**
  * Product method to update the current product object which will update the

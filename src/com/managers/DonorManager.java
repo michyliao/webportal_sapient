@@ -149,28 +149,34 @@ public class DonorManager implements IPortal<Donor>, MyDAO<Donor> {
 		Donor donor = null;
 
 		try {
-			CallableStatement stmt = conn.prepareCall("{call find_donor(?,?,?,?,?)}");
-
+			CallableStatement stmt = conn.prepareCall("{call find_donor(?,?,?,?)}");
+			if (!id.equals(null)){
+				stmt.setString(1, id.toString());
+			}else{
+				stmt.setString(1, "");
+			}
+			
 			// Don't want a OutOfIndexArrayException
 			if (value.length > 0) {
-				stmt.setString(1, value[0]);
-				stmt.setString(2, value[1]);
+				stmt.setString(2, value[0]);
+				stmt.setString(3, value[1]);
 			} else {
-				stmt.setString(1, "");
 				stmt.setString(2, "");
+				stmt.setString(3, "");
 			}
 
-			stmt.registerOutParameter(1, Types.VARCHAR);
-			stmt.registerOutParameter(2, Types.VARCHAR);
-			stmt.registerOutParameter(3, Types.VARCHAR);
+			stmt.registerOutParameter(4, OracleTypes.CURSOR);
 
 			stmt.executeQuery();
+			ResultSet rs = (ResultSet) stmt.getObject(4);
 
 			donor = new Donor();
-
-			donor.setID((UUID) stmt.getObject(1));
-			donor.setName((String) stmt.getObject(2));
-			donor.setEmail((String) stmt.getObject(3));
+			
+			while (rs.next()) {	
+				donor.setID(UUID.fromString(rs.getString(1)));
+				donor.setName(rs.getString(2));
+				donor.setEmail(rs.getString(3));
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();

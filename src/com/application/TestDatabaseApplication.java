@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.List;
 import java.util.UUID;
 
+import com.donations.AbstractDonation;
 import com.donations.ProjectDonation;
 import com.managers.DonationManager;
 import com.managers.DonorManager;
@@ -79,7 +80,10 @@ public class TestDatabaseApplication {
     ProjectDonation donationOne = new ProjectDonation(donorOne, 500.00, cureCancer);
     DonationManager donManager = new DonationManager();
     
-    donManager.create(donationOne);
+//    donManager.create(donationOne);
+    for (AbstractDonation don : donManager.find_donationByTime()){
+    	System.out.println(don.getClass());
+    }
 	}
 
 }

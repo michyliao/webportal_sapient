@@ -29,7 +29,11 @@ public class ItemDonation extends AbstractDonation {
     updateItem();
   }
 
-  /**
+  public ItemDonation() {
+  	super(null, 0.00D, null, null);
+  }
+
+	/**
    *  Product method to update the current product object which will update
    * the donation amount, and add the donor to the project donorlist.
    */

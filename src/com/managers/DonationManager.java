@@ -170,37 +170,37 @@ public class DonationManager implements IPortal<AbstractDonation>, MyDAO<Abstrac
 				stmt.setString(3, "");
 				stmt.setString(4, "");
 			}
-			
+
 			stmt.registerOutParameter(1, Types.VARCHAR);
 			stmt.registerOutParameter(2, Types.VARCHAR);
 			stmt.registerOutParameter(3, Types.VARCHAR);
 			stmt.registerOutParameter(4, Types.VARCHAR);
 			stmt.registerOutParameter(5, Types.FLOAT);
 			stmt.registerOutParameter(6, Types.DATE);
-			
+
 			stmt.executeQuery();
-			
+
 			String type = stmt.getObject(4).toString();
-			
-			if (type.equals(Type.PORTAL.toString())){
+
+			if (type.equals(Type.PORTAL.toString())) {
 				donation = new PortalDonation(null, 0.00D, null);
-			} else if (type.equals(Type.PROJECT.toString())){
+			} else if (type.equals(Type.PROJECT.toString())) {
 				donation = new ProjectDonation(null, 0.00D, null);
 			} else {
 				donation = new ItemDonation(null, 0.00D, null);
 			}
-			
-			//Get Donor first
+
+			// Get Donor first
 			DonorManager tempManager = new DonorManager();
 			Donor donor = tempManager.find((UUID) stmt.getObject(2), "", "");
-			
+
 			donation.setDonationId((UUID) stmt.getObject(1));
 			donation.setDonor(donor);
 			donation.setType_id((UUID) stmt.getObject(3));
 			donation.setType((Type) stmt.getObject(4));
 			donation.setDonationAmount((Double) stmt.getObject(5));
 			donation.setTime_created((Date) stmt.getObject(6));
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -222,28 +222,29 @@ public class DonationManager implements IPortal<AbstractDonation>, MyDAO<Abstrac
 
 			while (rs.next()) {
 				AbstractDonation donation = null;
-				
+
 				String type = rs.getString(4);
-				
-				if (type.equals(Type.PORTAL.toString())){
+
+				if (type.equals(Type.PORTAL.toString())) {
 					donation = new PortalDonation(null, 0.00D, null);
-				} else if (type.equals(Type.PROJECT.toString())){
+				} else if (type.equals(Type.PROJECT.toString())) {
 					donation = new ProjectDonation(null, 0.00D, null);
 				} else {
 					donation = new ItemDonation(null, 0.00D, null);
 				}
-				
-				//Get Donor first
+
+				// Get Donor first
 				DonorManager tempManager = new DonorManager();
 				Donor donor = tempManager.find((UUID) stmt.getObject(2), "", "");
-				
+
+				//TODO fix this
 				donation.setDonationId((UUID) stmt.getObject(1));
 				donation.setDonor(donor);
 				donation.setType_id((UUID) stmt.getObject(3));
 				donation.setType((Type) stmt.getObject(4));
 				donation.setDonationAmount((Double) stmt.getObject(5));
 				donation.setTime_created((Date) stmt.getObject(6));
-			
+
 				donationList.add(donation);
 			}
 
@@ -260,5 +261,61 @@ public class DonationManager implements IPortal<AbstractDonation>, MyDAO<Abstrac
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public List<AbstractDonation> find_donationByTime() {
+		List<AbstractDonation> donationList = new ArrayList<AbstractDonation>();
+		try
+
+		{
+			CallableStatement stmt = conn.prepareCall("{call find_donationByTime(?,?,?,?)}");
+
+			stmt.setString(1, "");
+			stmt.setString(2, "2016-08-10");
+			stmt.setInt(3, 0);
+
+			stmt.registerOutParameter(4, OracleTypes.CURSOR);
+
+			stmt.execute();
+			ResultSet rs = (ResultSet) stmt.getObject(4);
+
+		
+			
+			while (rs.next()) {
+				AbstractDonation donation;
+
+				String type = rs.getString(4);
+				
+				System.out.println(type);
+
+				if (type.equals(Type.PORTAL.toString())) {
+					donation = new PortalDonation();
+				} else if (type.equals(Type.PROJECT.toString())) {
+					donation = new ProjectDonation();
+				} else {
+					donation = new ItemDonation();
+				}
+
+				// Get Donor first
+				DonorManager tempManager = new DonorManager();
+				Donor donor = tempManager.find(UUID.fromString("424d9423-fcaf-4f31-88e1-495a30c461b6"), "", "");
+
+				//Donor donor = tempManager.find(UUID.fromString(rs.getString(2)), "", "");
+
+				donation.setDonationId(UUID.fromString(rs.getString(1)));
+				donation.setDonor(donor);
+				donation.setType_id(UUID.fromString(rs.getString(3)));
+				donation.setType(rs.getString(4)); //TODO fix this
+				donation.setDonationAmount(rs.getDouble(5));
+				donation.setTime_created(rs.getDate(6));
+
+				donationList.add(donation);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return donationList;
+
 	}
 }

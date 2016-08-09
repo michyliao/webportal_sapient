@@ -133,5 +133,11 @@ public abstract class AbstractDonation {
     return "Donor " + donor.getName() + " \t Donation amount: " + donationAmount;
   }
 
+	public void setType(String string) {
+		// TODO Auto-generated method stub
+		this.type = type.PROJECT;
+		
+	}
+
 
 }
