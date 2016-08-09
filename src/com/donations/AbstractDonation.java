@@ -1,5 +1,6 @@
 package com.donations;
 
+import java.sql.Date;
 import java.util.UUID;
 
 import com.portalObjects.Donor;
@@ -17,6 +18,8 @@ public abstract class AbstractDonation {
   private double donationAmount;
   
   private UUID donationId;
+  
+  private Date time_created;
 
   /**
    * Construct method for Abstract.
@@ -29,6 +32,7 @@ public abstract class AbstractDonation {
     this.donor = donor;
     this.donationAmount = donationAmount;
     this.donationId = UUID.randomUUID();
+    
   }
   
   public UUID getID(){

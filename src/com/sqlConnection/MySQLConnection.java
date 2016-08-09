@@ -1,4 +1,4 @@
-package sqlConnection;
+package com.sqlConnection;
 import java.io.*;
 import java.sql.*;
 import java.util.*;
@@ -27,9 +27,5 @@ public class MySQLConnection {
 		
 		return con;
 	}
-	
-	
-	public static void main(String[] args){
-		getMyOracleConnection();
-	}
+
 }

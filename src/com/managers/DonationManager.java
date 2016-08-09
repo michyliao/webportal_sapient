@@ -2,12 +2,14 @@ package com.managers;
 
 import java.sql.CallableStatement;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.UUID;
 
 import com.donations.AbstractDonation;
 import com.interfaces.IPortal;
+import com.interfaces.MyDAO;
 
-public class DonationManager implements IPortal<AbstractDonation> {
+public class DonationManager implements IPortal<AbstractDonation>, MyDAO<AbstractDonation> {
 
 	Hashtable<UUID, AbstractDonation> donationList = new Hashtable<UUID, AbstractDonation>();
 
@@ -39,4 +41,33 @@ public class DonationManager implements IPortal<AbstractDonation> {
 		}
 	}
 
+	@Override
+	public int create(AbstractDonation t) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update(AbstractDonation t) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int delete(AbstractDonation t) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public AbstractDonation find(UUID id, String... value) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<AbstractDonation> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

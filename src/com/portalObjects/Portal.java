@@ -4,16 +4,16 @@ import com.donations.*;
 import com.managers.*;
 
 public class Portal {
-	
+
 	private String name;
 	private DonorManager donorMang;
 	private ProjectManager projectMang;
 	private DonationManager donationMang;
 	private ItemManager itemMang;
-	
+
 	private double totalDonation;
-	
-	public Portal(String name){
+
+	public Portal(String name) {
 		super();
 		this.name = name;
 		this.donorMang = new DonorManager();
@@ -21,8 +21,9 @@ public class Portal {
 		this.donationMang = new DonationManager();
 		this.projectMang = new ProjectManager();
 		this.itemMang = new ItemManager();
+		
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -38,69 +39,70 @@ public class Portal {
 	public void setTotalDonation(double totalDonation) {
 		this.totalDonation = totalDonation;
 	}
-	
+
 	/**
 	 * a method to add a Donor to
+	 * 
 	 * @param donation
 	 */
-	public void updateDonation(PortalDonation donation){
+	public void updateDonation(PortalDonation donation) {
 		totalDonation += donation.getDonationAmount();
 	}
-	
-	public void addProject(Project project){
+
+	public void addProject(Project project) {
 		projectMang.add(project);
 	}
-	
-	public void viewAllAvailableProjects(){
+
+	public void viewAllAvailableProjects() {
 		projectMang.viewAll();
 	}
-	
-	public void addDonor(Donor donor){
+
+	public void addDonor(Donor donor) {
 		donorMang.add(donor);
 	}
-	
-	public void viewAllProjectsDonors(){
+
+	public void viewAllProjectsDonors() {
 		projectMang.viewAllProjectsDonors();
 	}
-	
-	public void viewSpecificProject(String projectName){
+
+	public void viewSpecificProject(String projectName) {
 		projectMang.viewProjectDonors(projectName);
 	}
-	
-	public void addDonation(AbstractDonation donation){
+
+	public void addDonation(AbstractDonation donation) {
 		donationMang.add(donation);
 	}
-	
-	public void viewDonations(){
+
+	public void viewDonations() {
 		donationMang.viewAll();
 	}
-	
-	public void addItem(Item item){
+
+	public void addItem(Item item) {
 		itemMang.add(item);
 	}
-	
-	public void viewItems(){
+
+	public void viewItems() {
 		itemMang.viewAll();
 	}
-	
-	public Project findProject(String projName){
+
+	public Project findProject(String projName) {
 		return projectMang.find(projName);
 	}
-	
-	public Donor findDonor(String donorName){
+
+	public Donor findDonor(String donorName) {
 		return donorMang.find(donorName);
 	}
-	
-	public void viewDonors(){
+
+	public void viewDonors() {
 		donorMang.viewAll();
 	}
-	
-	public Item findItem(String itemName){
+
+	public Item findItem(String itemName) {
 		return itemMang.find(itemName);
 	}
-	
+
 	@Override
-	public String toString(){
-		return "Welcome to " + name + "\n" ;
+	public String toString() {
+		return "Welcome to " + name + "\n";
 	}
 }
