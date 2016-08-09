@@ -1,11 +1,14 @@
 package com.portalObjects;
 
+import java.util.UUID;
+
 import com.donations.*;
 import com.managers.*;
 
 public class Portal {
 
 	private String name;
+	private UUID portal_id;
 	private DonorManager donorMang;
 	private ProjectManager projectMang;
 	private DonationManager donationMang;
@@ -38,6 +41,20 @@ public class Portal {
 
 	public void setTotalDonation(double totalDonation) {
 		this.totalDonation = totalDonation;
+	}
+
+	/**
+	 * @return the portal_id
+	 */
+	public UUID getPortal_id() {
+		return portal_id;
+	}
+
+	/**
+	 * @param portal_id the portal_id to set
+	 */
+	public void setPortal_id(UUID portal_id) {
+		this.portal_id = portal_id;
 	}
 
 	/**

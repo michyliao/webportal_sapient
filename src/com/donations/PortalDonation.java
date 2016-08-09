@@ -1,5 +1,6 @@
 package com.donations;
 
+import com.donations.AbstractDonation.Type;
 import com.portalObjects.Donor;
 import com.portalObjects.Portal;
 
@@ -23,7 +24,7 @@ public class PortalDonation extends AbstractDonation {
  * @param portal the portal object that is associated with the donation
 */
   public PortalDonation(Donor donor, double donationAmount, Portal portal) {
-    super(donor, donationAmount);
+    super(donor, donationAmount, portal.getPortal_id(), Type.PORTAL);
     this.portal = portal;
 
     updatePortal();
@@ -35,6 +36,10 @@ public class PortalDonation extends AbstractDonation {
    */
   private void updatePortal() {
     portal.updateDonation(this);
+  }
+  
+  private Portal getPortal(){
+  	return portal;
   }
 
   @Override

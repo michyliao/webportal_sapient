@@ -23,7 +23,7 @@ public class ItemDonation extends AbstractDonation {
  * @param item the product the donor wants to donate too
 */
   public ItemDonation(Donor donor, double donationAmount, Item item) {
-    super(donor, donationAmount);
+    super(donor, donationAmount, item.getID(), Type.ITEM);
     this.item = item;
 
     updateItem();

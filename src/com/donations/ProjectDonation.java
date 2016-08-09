@@ -23,12 +23,12 @@ public class ProjectDonation extends AbstractDonation {
  * @param project the project the donor wants to donate too
 */
   public ProjectDonation(Donor donor, double donationAmount, Project project) {
-    super(donor, donationAmount);
+    super(donor, donationAmount, project.getProjID(), Type.PROJECT);
     this.project = project;
     updateProject();
   }
 
-  /**
+	/**
  * Product method to update the current product object which will update the
  * donation amount, and add the donor to the project donorlist.
 */

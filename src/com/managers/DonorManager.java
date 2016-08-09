@@ -149,7 +149,7 @@ public class DonorManager implements IPortal<Donor>, MyDAO<Donor> {
 		Donor donor = null;
 
 		try {
-			CallableStatement stmt = conn.prepareCall("{call find_donor(?,?)}");
+			CallableStatement stmt = conn.prepareCall("{call find_donor(?,?,?,?,?)}");
 
 			// Don't want a OutOfIndexArrayException
 			if (value.length > 0) {

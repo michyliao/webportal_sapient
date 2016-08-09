@@ -2,10 +2,15 @@ package com.application;
 
 import java.sql.*;
 import java.util.List;
+import java.util.UUID;
 
+import com.donations.ProjectDonation;
+import com.managers.DonationManager;
 import com.managers.DonorManager;
+import com.managers.ItemManager;
 import com.managers.ProjectManager;
 import com.portalObjects.Donor;
+import com.portalObjects.Item;
 import com.portalObjects.Project;
 import com.sqlConnection.MySQLConnection;
 
@@ -35,7 +40,7 @@ public class TestDatabaseApplication {
 //			e.printStackTrace();
 //		}
 		
-//    Project cureCancer = new Project("Cure Cancer", "Cancer research facility", 1000);
+		Project cureCancer = new Project("Cure Cancer", "Cancer research facility", 1000);
 //    Project oldAgeHome = new Project("Old Age Home", "Home for old people", 6000);
 
     ProjectManager manager = new ProjectManager();
@@ -56,8 +61,25 @@ public class TestDatabaseApplication {
     
     for (Donor donor : dManager.findAll()){
     	System.out.println(donor);
-    }
+    } 
+    
+    Item oldManOne = new Item("One Man 1", "picture_9", UUID.randomUUID());
+    Item oldManTwo = new Item("One Man 2", "picture_10", UUID.randomUUID());
+    Item oldManThree = new Item("One Man 3", "picture_11", UUID.randomUUID());
 	
+    ItemManager IManager = new ItemManager();
+//    IManager.create(oldManOne);
+//    IManager.create(oldManTwo);
+//    IManager.create(oldManThree);
+    
+    for (Item item : IManager.findAll()){
+    	System.out.println(item);
+    } 
+    
+    ProjectDonation donationOne = new ProjectDonation(donorOne, 500.00, cureCancer);
+    DonationManager donManager = new DonationManager();
+    
+    donManager.create(donationOne);
 	}
 
 }

@@ -192,7 +192,7 @@ public class ProjectManager implements IPortal<Project>, MyDAO<Project> {
 		Project project = null;
 
 		try {
-			CallableStatement stmt = conn.prepareCall("{call find_donation(?,?,?,?,?,?,?)}");
+			CallableStatement stmt = conn.prepareCall("{call find_project(?,?,?,?,?,?,?,?,?,?)}");
 
 			stmt.setString(1, id.toString());
 

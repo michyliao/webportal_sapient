@@ -75,7 +75,7 @@ public class ItemManager implements IPortal<Item>, MyDAO<Item> {
 	@Override
 	public int create(Item item) {
 		try {
-			CallableStatement stmt = conn.prepareCall("{call create_project(?,?,?,?,?)}");
+			CallableStatement stmt = conn.prepareCall("{call create_item(?,?,?,?,?)}");
 
 			stmt.setString(1, item.getID().toString());
 			stmt.setString(2, item.getProjectID().toString());
@@ -103,7 +103,7 @@ public class ItemManager implements IPortal<Item>, MyDAO<Item> {
 	public int update(Item item) {
 
 		try {
-			CallableStatement stmt = conn.prepareCall("{call update_project(?,?,?,?,?)}");
+			CallableStatement stmt = conn.prepareCall("{call update_item(?,?,?,?,?)}");
 
 			stmt.setString(1, item.getID().toString());
 			stmt.setString(2, item.getProjectID().toString());
@@ -152,7 +152,7 @@ public class ItemManager implements IPortal<Item>, MyDAO<Item> {
 		Item item= null;
 
 		try {
-			CallableStatement stmt = conn.prepareCall("{call find_item(?,?)}");
+			CallableStatement stmt = conn.prepareCall("{call find_item(?,?,?,?,?,?,?)}");
 
 			// Don't want a OutOfIndexArrayException
 			if (value.length > 0) {
@@ -208,11 +208,11 @@ public class ItemManager implements IPortal<Item>, MyDAO<Item> {
 			while (rs.next()) {
 				Item item = new Item();
 
-				item.setItemID((UUID) stmt.getObject(1));
-				item.setProjectID((UUID) stmt.getObject(2));
-				item.setName((String) stmt.getObject(3));
-				item.setImg((String) stmt.getObject(4));
-				item.setTotalDonation((Double) stmt.getObject(5));
+				item.setItemID(UUID.fromString(rs.getString(1)));
+				item.setProjectID(UUID.fromString(rs.getString(2)));
+				item.setName(rs.getString(3));
+				item.setImg(rs.getString(4));
+				item.setTotalDonation( rs.getFloat(5));
 
 				itemDonor.add(item);
 			}
