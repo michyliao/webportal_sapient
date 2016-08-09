@@ -13,12 +13,24 @@ import com.sqlConnection.MySQLConnection;
 
 import oracle.jdbc.OracleTypes;
 
+/**
+ * Project Manager class that handles project functionality of creating, and
+ * storing project objects into the database - in the Projects Table.
+ * 
+ * @author mliao
+ *
+ */
 public class ProjectManager implements IPortal<Project>, MyDAO<Project> {
 
 	Hashtable<UUID, Project> projectList = new Hashtable<UUID, Project>();
 
 	Connection conn;
 
+	/**
+	 * ProjectManager constructor that takes in no argument and instantiate SQL connection
+	 * 
+	 * @throws NullPointerException If SQL connection is not connected, a null pointer exception will be thrown
+	 */
 	public ProjectManager() throws NullPointerException {
 		super();
 		if ((this.conn = new MySQLConnection().getMyOracleConnection()) == null) {
@@ -38,6 +50,9 @@ public class ProjectManager implements IPortal<Project>, MyDAO<Project> {
 		projectList.put(key, project);
 	}
 
+	/**
+	 * Method to print a project
+	 */
 	@Override
 	public void print(Project project) {
 		System.out.println(project);
@@ -116,6 +131,14 @@ public class ProjectManager implements IPortal<Project>, MyDAO<Project> {
 		return 0;
 	}
 
+	/**
+	 * 
+	 * @project Current project with the new updated values
+	 * 
+	 *          Method to update an existing project in the Project table in the
+	 *          database.
+	 * 
+	 */
 	@Override
 	public int update(Project project) {
 		try {
@@ -135,6 +158,12 @@ public class ProjectManager implements IPortal<Project>, MyDAO<Project> {
 		return 0;
 	}
 
+	/**
+	 * @project The project object to be delete
+	 * 
+	 *          Method to delete the project value in the Database
+	 * 
+	 */
 	@Override
 	public int delete(Project project) {
 		try {
@@ -199,7 +228,7 @@ public class ProjectManager implements IPortal<Project>, MyDAO<Project> {
 	/**
 	 * @return a list of projects from the db
 	 * 
-	 * Find all functionality for Projects.
+	 *         Find all functionality for Projects.
 	 */
 
 	@Override
